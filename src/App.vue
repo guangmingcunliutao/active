@@ -1,29 +1,54 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <div class="activeName">魔法相册</div>
+    <div class="btn" @click="go">进入相册</div>
+    <dialogFragment v-if="show" :isShow="show" @cancel="cancel">
+      <div class="item">拍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;照</div>
+      <div class="item">从相册选择</div>
+    </dialogFragment>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  data() {
+    return {
+      show: false
+    }
+  },
+  methods: {
+    go() {
+      this.show = !this.show;
+    },
+    cancel() {
+      this.show = !this.show;
     }
   }
 }
+</script>
+<style lang="less">
+html,body,#app{
+  width: 100%;
+  height: 100%;
+}
+#app{
+  background-image: url('https://via.placeholder.com/300.png/09f/fff');
+}
+.btn{
+  width: 2rem;
+  height: 1rem;
+  background: violet;
+  border-radius: .5rem;
+  text-align: center;
+  line-height: 1rem;
+}
+.tanchu{
+  width: 100%;
+  height: 2rem;
+  background: white;
+  font-size: .3rem;
+  text-align: center;
+  line-height: 2rem;
+}
 </style>
+
