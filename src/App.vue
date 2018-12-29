@@ -21,7 +21,7 @@ export default {
       this.show = !this.show;
     },
     cancel() {
-      this.show = !this.show;
+      this.show = false;
     }
   }
 }
@@ -49,6 +49,11 @@ html,body,#app{
   font-size: .3rem;
   text-align: center;
   line-height: 2rem;
+}
+.sss{
+  width: 100%;
+  height: 100%;
+  background: violet;
 }
 </style>
 

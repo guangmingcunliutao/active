@@ -1,10 +1,10 @@
 <template>
-    <div class="mask">
-        <div class="contentWrap slideInUp animated">
+    <div class="mask" @click.stop="cancel">
+        <div class="contentWrap slideInUp animated" ref="contentWrap">
             <div class="slotWrap">
                 <slot></slot>
             </div>
-            <div class="item cancel" @click="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</div>
+            <div class="item cancel" @click.stop="cancel">取&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;消</div>
         </div>
     </div>
 </template>
@@ -22,11 +22,12 @@ export default {
     },
     methods: {
         cancel(){
+            console.log(this.$refs);
             this.$emit('cancel');
         }
     },
     mounted() {
-
+        console.log(this.$refs);
     }
 }
 </script>
@@ -42,6 +43,7 @@ export default {
 }
 .contentWrap{
     position: absolute;
+    min-height: 2rem;
     bottom: 0;
     left: 0;
     right: 0;
