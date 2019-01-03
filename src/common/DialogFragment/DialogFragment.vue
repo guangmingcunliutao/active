@@ -1,5 +1,5 @@
 <template>
-    <div class="mask" @click.stop="cancel">
+    <div class="mask" @click="cancel">
         <div class="contentWrap slideInUp animated" ref="contentWrap">
             <div class="slotWrap">
                 <slot></slot>
@@ -18,7 +18,8 @@ export default {
         }
     },
     props: {
-        isShow: Boolean
+        isShow: Boolean,
+        test: String
     },
     methods: {
         cancel(){
@@ -28,8 +29,19 @@ export default {
     },
     mounted() {
         console.log(this.$refs);
+        console.log(this.$emit('update:test', 'hhhhh'));
+        console.log(this.test);
     }
 }
+
+function fn() {
+    var i = 0;
+    return function fn1(i) {
+        console.log(i);
+    }
+}
+
+
 </script>
 
 <style lang="less" scoped>
@@ -48,6 +60,7 @@ export default {
     left: 0;
     right: 0;
     background: #ccc;
+    z-index: 2;
 }
 .item{
     width: 100%;

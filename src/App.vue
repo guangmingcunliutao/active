@@ -2,9 +2,10 @@
   <div id="app">
     <div class="activeName">魔法相册</div>
     <div class="btn" @click="go">进入相册</div>
-    <dialogFragment v-if="show" :isShow="show" @cancel="cancel">
-      <div class="item">拍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;照</div>
-      <div class="item">从相册选择</div>
+    <dialogFragment v-if="show" :isShow="show" @cancel="cancel" v-bind:test.sync="test">
+      <div class="item" @click.stop="getP">拍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;照</div>
+      <div class="item" @click.stop="getP">从相册选择</div>
+      <div class="item">{{test}}</div>
     </dialogFragment>
   </div>
 </template>
@@ -13,7 +14,8 @@
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      test: 'test'
     }
   },
   methods: {
@@ -22,6 +24,9 @@ export default {
     },
     cancel() {
       this.show = false;
+    },
+    getP(){
+      console.log('getP');
     }
   }
 }
