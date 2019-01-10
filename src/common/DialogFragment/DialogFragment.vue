@@ -34,13 +34,6 @@ export default {
     }
 }
 
-function fn() {
-    var i = 0;
-    return function fn1(i) {
-        console.log(i);
-    }
-}
-
 
 </script>
 

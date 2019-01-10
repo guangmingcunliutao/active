@@ -7,6 +7,12 @@
       <div class="item" @click.stop="getP">从相册选择</div>
       <div class="item">{{test}}</div>
     </dialogFragment>
+      <img src="../src/assets/1.jpg" alt="">
+    <button @click="screenshot" class="screenshot">截图</button>
+    <div class="test">
+      <img src="false" alt="" ref="img">
+    </div>
+    
   </div>
 </template>
 
@@ -27,11 +33,23 @@ export default {
     },
     getP(){
       console.log('getP');
+      this.show = false;
+    },
+    screenshot() {
+      
+      if(!this.$refs.img.src.match('false')) return;
+
+      html2canvas(document.body).then((canvas)=> {
+        var img = canvas.toDataURL();
+        this.$refs.img.src = img;
+      });
     }
+    
   }
 }
 </script>
 <style lang="less">
+
 html,body,#app{
   width: 100%;
   height: 100%;
@@ -59,6 +77,17 @@ html,body,#app{
   width: 100%;
   height: 100%;
   background: violet;
+}
+.screenshot{
+  width: 2rem;
+  height: 1.2rem;
+  background: lightskyblue;
+  margin: 10px;
+  outline: none;
+  user-select: none;
+  font-size: .3rem;
+  border: none;
+  border-radius: .5rem;
 }
 </style>
 
