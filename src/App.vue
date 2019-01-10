@@ -43,8 +43,8 @@ export default {
         var img = canvas.toDataURL();
         this.$refs.img.src = img;
       });
+      
     }
-    
   }
 }
 </script>
