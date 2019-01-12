@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <div class="activeName">魔法相册</div>
     <div class="btn" @click="go">进入相册</div>
-    <dialogFragment v-if="show" :isShow="show" @cancel="cancel" v-bind:test.sync="test">
+    <dialogFragment v-if="show" :isShow="show" @cancel="cancel" >
       <div class="item" @click.stop="getP">拍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;照</div>
       <div class="item" @click.stop="getP">从相册选择</div>
-      <div class="item">{{test}}</div>
     </dialogFragment>
-      <img src="../src/assets/1.jpg" alt="">
+
+    <div class="gift" @click="go" v-if="gift">
+      这是一个礼物
+    </div>
+
+    <div class="progress"></div>
+
+    <div class="progressY"></div>
+
+    <!-- 截图部分 -->
+    
     <button @click="screenshot" class="screenshot">截图</button>
-    <div class="test">
+    <div class="imgWrap">
       <img src="false" alt="" ref="img">
     </div>
+    
     
   </div>
 </template>
@@ -21,7 +30,7 @@ export default {
   data() {
     return {
       show: false,
-      test: 'test'
+      gift: true
     }
   },
   methods: {
@@ -39,23 +48,72 @@ export default {
       
       if(!this.$refs.img.src.match('false')) return;
 
-      html2canvas(document.body).then((canvas)=> {
-        var img = canvas.toDataURL();
-        this.$refs.img.src = img;
-      });
+      // html2canvas(document.body).then((canvas)=> {
+      //   var img = canvas.toDataURL();
+      //   this.$refs.img.src = img;
+      // });
       
+    },
+    giftDisappear() {
+      setTimeout(()=>{
+        console.log(this.gift);
+        this.gift = false;
+      },8000);
     }
+  },
+  created() {
+    this.giftDisappear();
+    var obj = {
+      name: 'name',
+      age: 20
+    }
+    obj = JSON.stringify(obj);
+    localStorage.setItem('token', obj);
   }
 }
 </script>
 <style lang="less">
-
+.progressY{
+  width: calc(2rem - .2rem);
+  height: calc(2rem - .2rem);
+  border-radius: 50%;
+  border: .1rem solid lightskyblue;
+}
+.progress{
+  height: .4rem;
+  background: lightblue;
+  animation: progress 5s linear;
+}
+@keyframes progress{
+  from{
+    width: 0%;
+  }
+  to{
+    width: 100%;
+  }
+}
+.gift{
+  width: 2rem;
+  height: .6rem;
+  line-height: .6rem;
+  text-align: center;
+  font-size: .3rem;
+  background: lightblue;
+  animation: gift 10s linear;
+  position: relative;
+}
+@keyframes gift{
+  from {
+    right: -7.5rem;
+  }
+  to {
+    right: 2rem;
+  }
+}
 html,body,#app{
   width: 100%;
   height: 100%;
-}
-#app{
-  background-image: url('https://via.placeholder.com/300.png/09f/fff');
+  overflow: hidden;
 }
 .btn{
   width: 2rem;
@@ -64,19 +122,6 @@ html,body,#app{
   border-radius: .5rem;
   text-align: center;
   line-height: 1rem;
-}
-.tanchu{
-  width: 100%;
-  height: 2rem;
-  background: white;
-  font-size: .3rem;
-  text-align: center;
-  line-height: 2rem;
-}
-.sss{
-  width: 100%;
-  height: 100%;
-  background: violet;
 }
 .screenshot{
   width: 2rem;
@@ -90,4 +135,3 @@ html,body,#app{
   border-radius: .5rem;
 }
 </style>
-

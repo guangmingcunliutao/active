@@ -1,6 +1,7 @@
 html,body,dl,dd,ul,ol,h1,h2,h3,h4,h5,h6,pre,form,input,textarea,p,hr,thead,tbody,tfoot,th,td {
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 ul,ol {

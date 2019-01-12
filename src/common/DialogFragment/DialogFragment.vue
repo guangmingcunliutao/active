@@ -18,19 +18,12 @@ export default {
         }
     },
     props: {
-        isShow: Boolean,
-        test: String
+        isShow: Boolean
     },
     methods: {
         cancel(){
-            console.log(this.$refs);
             this.$emit('cancel');
         }
-    },
-    mounted() {
-        console.log(this.$refs);
-        console.log(this.$emit('update:test', 'hhhhh'));
-        console.log(this.test);
     }
 }
 
@@ -45,6 +38,7 @@ export default {
     bottom: 0;
     right: 0;
     background: hsla(0, 0, 0, 0.4);
+    overflow: hidden;
 }
 .contentWrap{
     position: absolute;
