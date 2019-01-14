@@ -10,7 +10,8 @@
       这是一个礼物
     </div>
 
-    <div class="progress"></div>
+    <div class="progress">
+    </div>
 
     <div class="progressY"></div>
 
@@ -21,6 +22,7 @@
       <img src="false" alt="" ref="img">
     </div>
     
+    <input type="number" class="inp">
     
   </div>
 </template>
@@ -48,10 +50,10 @@ export default {
       
       if(!this.$refs.img.src.match('false')) return;
 
-      // html2canvas(document.body).then((canvas)=> {
-      //   var img = canvas.toDataURL();
-      //   this.$refs.img.src = img;
-      // });
+      html2canvas(document.body).then((canvas)=> {
+        var img = canvas.toDataURL();
+        this.$refs.img.src = img;
+      });
       
     },
     giftDisappear() {
@@ -73,6 +75,9 @@ export default {
 }
 </script>
 <style lang="less">
+.inp{
+  margin-top: 3rem;
+}
 .progressY{
   width: calc(2rem - .2rem);
   height: calc(2rem - .2rem);
@@ -113,7 +118,7 @@ export default {
 html,body,#app{
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
 }
 .btn{
   width: 2rem;
